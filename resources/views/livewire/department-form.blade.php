@@ -1,3 +1,7 @@
 <div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
+  <input wire:model="name" type="text" />
+  <button wire:click="submit">Submit</button>
+  @if($success)
+    <div>Success</div>
+  @endif
 </div>

@@ -40,8 +40,7 @@
                     </h1>
 
                     <div>
-                        <div>{{ App\Models\User::count() }}</div>
-                        {{-- <div>{{ App\Models\User::where('tenant_id', 1)->count() }}</div> --}}
+                        <livewire:department-form></livewire:department-form>
                     </div>
 
                     <ul class="list-reset">
