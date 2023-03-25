@@ -9,16 +9,16 @@
     <label for="{{$attributes->whereStartsWith('wire:model')->first()}}"
            class="block text-sm font-medium leading-5 text-gray-700">{{$label}}
     </label>
-    <div class="mt-1 relative rounded-md shadow-sm">
+    <div class="mt-1 relative shadow-sm">
         <input
             {{$attributes->whereStartsWith('wire:model')}}
             id="{{$attributes->whereStartsWith('wire:model')->first()}}"
             type="{{$type}}"
             required="{{$required}}"
             @error($attributes->whereStartsWith('wire:model')->first())
-            class="form-input block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red sm:text-sm sm:leading-5"
+            class="form-input rounded-md block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red sm:text-sm sm:leading-5"
             @else
-            class="form-input block w-full sm:text-sm sm:leading-5"
+            class="form-input rounded-md block w-full sm:text-sm sm:leading-5"
             @endif
             placeholder="{{$placeholder}}"
             @error($attributes->whereStartsWith('wire:model')->first())

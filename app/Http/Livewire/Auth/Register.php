@@ -26,10 +26,10 @@ class Register extends Component
     public function register()
     {
         $this->validate([
-            'name' => ['required', 'string', 'min:20'],
-            'companyName' => ['required', 'string', 'unique:tenants,name', 'max:3'],
+            'name' => ['required', 'string', 'min:3'],
+            'companyName' => ['required', 'string', 'unique:tenants,name', 'min:3'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'numeric'],
+            'password' => ['required', 'min:8', 'alpha_num'],
         ]);
 
         $tenant = Tenant::create([

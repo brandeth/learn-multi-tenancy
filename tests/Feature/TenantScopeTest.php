@@ -20,7 +20,7 @@ class TenantScopeTest extends TestCase
 
         $this->artisan('make:model Test -m');
 
-        $filename = $now->year . '_' . $now->format('m') . '_' . $now->format('d') . '_' . $now->format('h')
+        $filename = $now->year . '_' . $now->format('m') . '_' . $now->format('d') . '_' . $now->format('H')
             . $now->format('i') . $now->format('s')
             . '_create_tests_table.php';
 
