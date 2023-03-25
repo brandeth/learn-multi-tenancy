@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Tenant;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,10 +26,10 @@ class Register extends Component
     public function register()
     {
         $this->validate([
-            'name' => ['required', 'string'],
-            'companyName' => ['required', 'string', 'unique:tenants,name'],
+            'name' => ['required', 'string', 'min:20'],
+            'companyName' => ['required', 'string', 'unique:tenants,name', 'max:3'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8'],
+            'password' => ['required', 'min:8', 'numeric'],
         ]);
 
         $tenant = Tenant::create([
@@ -50,6 +49,11 @@ class Register extends Component
         Auth::login($user, true);
 
         return redirect()->intended(route('home'));
+    }
+
+    public function updated($value)
+    {
+        $this->resetErrorBag($value);
     }
 
     public function render()
