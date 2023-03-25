@@ -29,7 +29,7 @@ class Register extends Component
             'name' => ['required', 'string', 'min:3'],
             'companyName' => ['required', 'string', 'unique:tenants,name', 'min:3'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'alpha_num'],
+            'password' => ['required', 'min:8'],
         ]);
 
         $tenant = Tenant::create([
