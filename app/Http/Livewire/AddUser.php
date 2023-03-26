@@ -2,12 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
+use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddUser extends Component
 {
-    public $name = "Kushna Lumos";
-    public $email = "kushna@lumos.com";
+    use WithFileUploads;
+
+    public $name = "Kushna Depulso";
+    public $email = "kushna@depulso";
     public $department = 'information_technology';
     public $title = "Developer";
     public $photo;
@@ -23,8 +28,23 @@ class AddUser extends Component
             'title' => 'required|string',
             'status' => 'required|boolean',
             'role' => 'required|string',
+            'photo' => 'image|max:1024', // 1MB Max
         ]);
 
+        $filename = $this->photo->store('public');
+        $filename = substr($filename, strpos($filename, "/") + 1);
+        User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'department' => $this->department,
+            'title' => $this->title,
+            'status' => $this->status,
+            'role' => $this->role,
+            'photo' => $filename,
+            'password' => bcrypt(Str::random(16)),
+        ]);
+
+        session()->flash('success', 'We Did It');
     }
 
     public function render()
